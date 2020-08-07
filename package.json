@@ -1,0 +1,56 @@
+{
+  "name": "electron-webpack-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/electron/main.js",
+  "scripts": {
+    "start": "node build/dev.runner.js",
+    "build": "node build/build.prod.js && electron-builder"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "electron": "^9.1.2",
+    "electron-builder": "^22.8.0",
+    "electron-connect": "^0.6.3",
+    "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-loader": "^1.0.1",
+    "vue-html-loader": "^1.2.4",
+    "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "build": {
+    "appId": "com.example.electronWebpackTest",
+    "productName": "打包测试",
+    "copyright": "Copyright © year Cao",
+    "directories": {
+      "output": "package"
+    },
+    "buildVersion": "1.0.1",
+    "files": [
+      "dist",
+      "assets"
+    ],
+    "win": {
+      "icon": "assets/img/icons/icon.ico"
+    },
+    "linux": {
+      "icon": "assets/img/icons"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "dependencies": {
+    "vue": "^2.6.11",
+    "vue-router": "^3.4.1"
+  }
+}

@@ -128,11 +128,19 @@ if (process.env.NODE_ENV != 'production') {
     vueConfig.devtool = '#cheap-module-eval-source-map';
     vueConfig.plugins.push(new webpack.NamedModulesPlugin());
     vueConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+    vueConfig.target = 'electron-renderer';
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"development"'
+    })
 } 
 
 if (process.env.NODE_ENV == 'production') {
     vueConfig.mode = 'production';
     vueConfig.plugins.push(new CleanWebpackPlugin());
+    vueConfig.target = 'electron-main';
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"production"'
+    })
 }
 
 module.exports = vueConfig;

@@ -28,15 +28,15 @@ let vueConfig = {
         rules : [
             {
                 test : /\.(sass|scss)$/,
-                use : ['vue-style-loader','style-loader','sass-loader']
+                use : ['vue-style-loader','style-loader','css-loader','sass-loader']
             },
             {
                 test : /\.less$/,
-                use : ['vue-style-loader','style-loader','less-loader']
+                use : ['vue-style-loader','style-loader','css-loader','less-loader']
             },
             {
                 test : /\.css$/,
-                use : ['vue-style-loader','style-loader']
+                use : ['vue-style-loader','style-loader','css-loader',]
             },
             {
                 test : /\.html$/,
@@ -54,9 +54,9 @@ let vueConfig = {
                     options : {
                         extractCSS : process.env.NODE_ENV == 'production',
                         loaders : {
-                            sass : 'vue-style-loader!style-loader!sass-loader',
-                            scss : 'vue-style-loader!style-loader!sass-loader',
-                            less : 'vue-style-loader!style-loader!less-loader'
+                            sass : 'vue-style-loader!style-loader!css-loader!sass-loader',
+                            scss : 'vue-style-loader!style-loader!css-loader!sass-loader',
+                            less : 'vue-style-loader!style-loader!css-loader!less-loader'
                         }
                     }
                 }

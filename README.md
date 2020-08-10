@@ -1,4 +1,5 @@
 ### 桌面应用框架
+集成electron与vue，可通过命令行简单的运行、打包桌面应用。
 
 #### 基本架构
 * 1、Electron
@@ -16,8 +17,9 @@ npm start
 ~~~
 
 ##### 构建项目
-生成目录：项目目录/package
 ~~~
 npm run build
 ~~~
+生成目录：项目目录/package
+修改名称等配置目录：./package.json的build参数
 

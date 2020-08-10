@@ -1,10 +1,12 @@
+process.env.NODE_ENV = 'development';
 // 开发环境启动相关
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 
-process.env.NODE_ENV = 'development';
+
+const mainConfig = require('./webpack.main.config');
 
 const vueConfig = require('./webpack.vue.config');
 
@@ -47,15 +49,9 @@ function startElectron () {
 // 重新启动electron
 function copyMain () {
     return new Promise((resolve,reject) => {
-        fs.readFile(path.join(__dirname,'../src/electron-main/main.js'),function (err,data) {
-            // 目录创建相关
-            if (!fs.statSync(path.join(__dirname,'../dist')).isDirectory()) fs.mkdirSync(path.join(__dirname,'../dist'));
-            if (!fs.statSync(path.join(__dirname,'../dist/electron')).isDirectory()) fs.mkdirSync(path.join(__dirname,'../dist/electron'));
-            // 迁移electron文件
-            fs.writeFile(path.join(__dirname,'../dist/electron/main.js'),data,function (error) {
-                console.log(error,'error');
-                resolve();
-            })
+        webpack(mainConfig,(err,status) => {
+            console.log(err,'main err');
+            resolve();
         })
     })
 }

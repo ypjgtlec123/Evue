@@ -41,6 +41,8 @@ let mainConfig = {
 console.log(`now environment of main building is : ${process.env.NODE_ENV}`);
 if (process.env.NODE_ENV == 'production') {
     mainConfig.mode = 'production';
+} else {
+    mainConfig.mode = 'development';
 }
 
 module.exports = mainConfig;

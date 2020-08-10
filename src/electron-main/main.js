@@ -21,6 +21,7 @@ function createWindow () {
     if (process.env.NODE_ENV != 'production') client.create(win);
     // 开发时，打开调试工具
     if (process.env.NODE_ENV != 'production') win.webContents.openDevTools();
+    win.webContents.openDevTools()
 }
 
 // Electron会在初始化完成并且准备好创建浏览器窗口时调用这个方法

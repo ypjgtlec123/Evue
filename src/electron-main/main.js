@@ -1,7 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
-console.log(process.env.NODE_ENV,'main env');
-if (process.env.NODE_ENV == 'production') var client = require('electron-connect').client;
+if (process.env.NODE_ENV != 'production') var client = require('electron-connect').client;
 
 const URL = process.env.NODE_ENV == 'production' 
             ? path.join(__dirname,'../vue/index.html')
@@ -17,12 +16,11 @@ function createWindow () {
         }
     });
 
-    // win.loadURL(URL);
-    win.loadURL('http://localhost:8080')
+    win.loadURL(URL);
 
-    if (process.env.NODE_ENV == 'production') client.create(win);
+    if (process.env.NODE_ENV != 'production') client.create(win);
+    // 开发时，打开调试工具
     if (process.env.NODE_ENV != 'production') win.webContents.openDevTools();
-    win.webContents.openDevTools()
 }
 
 // Electron会在初始化完成并且准备好创建浏览器窗口时调用这个方法

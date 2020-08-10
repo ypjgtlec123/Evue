@@ -28,7 +28,7 @@
   },
   "build": {
     "appId": "com.example.electronWebpackTest",
-    "productName": "打包测试",
+    "productName": "Evue",
     "copyright": "Copyright © year Cao",
     "directories": {
       "output": "package"
@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "vue": "^2.6.11",
-    "vue-router": "^3.4.1"
+    "vue-router": "^3.4.1",
+    "vuex": "^3.5.1"
   }
 }

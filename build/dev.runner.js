@@ -39,15 +39,15 @@ function startRender () {
 
 function startElectron () {
     const electron = require('electron-connect').server.create();
-    copyMain().then(() => {electron.start()});
+    packageMain().then(() => {electron.start()});
     
     fs.watchFile(path.join(__dirname,'../src/electron-main/main.js'),(cur,prv)=>{
-        copyMain().then(() => {electron.restart()});
+        packageMain().then(() => {electron.restart()});
     });
 }
 
 // 重新启动electron
-function copyMain () {
+function packageMain () {
     return new Promise((resolve,reject) => {
         webpack(mainConfig,(err,status) => {
             console.log(err,'main err');

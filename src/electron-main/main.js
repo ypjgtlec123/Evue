@@ -7,20 +7,19 @@ const URL = process.env.NODE_ENV == 'production'
             : 'http://localhost:8080';
 
 function createWindow () {
-    const win = new BrowserWindow({
-        width : 800,
-        height:600,
-        webPreferences : {
-            nodeIntergration : true
-        }
+    const mainWindow = new BrowserWindow({
+    height: 563,
+    width: 1000,
+    webPreferences : {
+        nodeIntegration : true
+    }
     });
 
-    win.loadURL(URL);
+    mainWindow.loadURL(URL);
 
-    if (process.env.NODE_ENV != 'production') client.create(win);
+    if (process.env.NODE_ENV != 'production') client.create(mainWindow);
     // 开发时，打开调试工具
-    if (process.env.NODE_ENV != 'production') win.webContents.openDevTools();
-    win.webContents.openDevTools()
+    if (process.env.NODE_ENV != 'production') mainWindow.webContents.openDevTools();
 }
 
 // Electron会在初始化完成并且准备好创建浏览器窗口时调用这个方法

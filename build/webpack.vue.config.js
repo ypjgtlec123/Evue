@@ -5,6 +5,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 let vueConfig = {
     devServer : {
@@ -24,7 +25,8 @@ let vueConfig = {
             '@' : path.join(__dirname,'../src/vue-render'),
             'vue$' : 'vue/dist/vue.esm.js'
         },
-        extensions : ['.js','.vue','.json','.css','.node']
+        extensions : ['.js','.vue','.json','.css','.node'],
+        plugins: [new TsconfigPathsPlugin({ configFile: path.join(__dirname,"../tsconfig.json") })]
     },
 
     module : {

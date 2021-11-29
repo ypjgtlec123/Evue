@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "baseUrl" : "./src/vue-render/",
+      "target": "es5",
+      "module": "commonjs",
+      "strict": false, // 开启所有严格的类型检查
+      "strictNullChecks": false,// 不允许把null、undefined赋值给其他类型的变量
+      "esModuleInterop": true,// 允许export=导出，由import from 导入
+    //   "experimentalDecorators": true
+    }
+}

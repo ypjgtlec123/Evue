@@ -12,7 +12,7 @@ function createWindow () {
     width: 1280,
     webPreferences : {
         nodeIntegration : true,
-        // 解决webpack-dev-server报错：required is not defined
+        // 是否独立js的API 解决webpack-dev-server报错：required is not defined
         contextIsolation: false
     }
     });

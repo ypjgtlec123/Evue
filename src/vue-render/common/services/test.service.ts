@@ -1,4 +1,4 @@
-export class testService{
+export class TestService{
     static testFn () {
         console.log('test Fn');
     }

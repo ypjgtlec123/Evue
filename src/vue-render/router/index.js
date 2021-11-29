@@ -14,6 +14,7 @@ export default new Router({
       path : '/hello-world',
       name : 'helloWorld',
       component : require('@/components/hello-world').default
+      // component : import('@/components/hello-world.vue')
     },
     {
       path: '*',

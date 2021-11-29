@@ -4,14 +4,16 @@ if (process.env.NODE_ENV != 'production') var client = require('electron-connect
 
 const URL = process.env.NODE_ENV == 'production' 
             ? path.join(__dirname,'../vue/index.html')
-            : 'http://localhost:8080';
+            : 'http://localhost:8090';
 
 function createWindow () {
     const mainWindow = new BrowserWindow({
-    height: 563,
-    width: 1000,
+    height: 720,
+    width: 1280,
     webPreferences : {
-        nodeIntegration : true
+        nodeIntegration : true,
+        // 解决webpack-dev-server报错：required is not defined
+        contextIsolation: false
     }
     });
 

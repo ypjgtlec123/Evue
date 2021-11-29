@@ -25,19 +25,31 @@ function init () {
 function startRender () {
     console.log('startRender');
     return new Promise((resolve,reject) => {
-        WebpackDevServer.addDevServerEntrypoints(vueConfig,devOptions);
-        const compiler = webpack(vueConfig);
-        const server = new WebpackDevServer(compiler,devOptions);
         
-        server.listen(8080,'localhost',() => {
-            resolve();
-            console.log('app running in http://localhost:8080');
-        })
+        const compiler = webpack(vueConfig);
+        const devServerOptions = { ...vueConfig.devServer, open: false };
+        const server = new WebpackDevServer(devServerOptions, compiler);
+        const runServer = async () => {
+            console.log('\033[44;37m Starting server... \033[0m');
+            await server.start();
+          };
+        runServer();
+        resolve();
+        
+        // WebpackDevServer.addDevServerEntrypoints(vueConfig,devOptions);
+        // const compiler = webpack(vueConfig);
+        // const server = new WebpackDevServer(compiler,devOptions);
+        
+        // server.listen(8090,'localhost',() => {
+        //     resolve();
+        //     console.log('app running in http://localhost:8090');
+        // })
     });
 }
 
 
 function startElectron () {
+    console.log('\033[44;37m startElectron \033[0m');
     const electron = require('electron-connect').server.create();
     packageMain().then(() => {electron.start()});
     

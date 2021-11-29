@@ -5,8 +5,12 @@ const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 let vueConfig = {
+    devServer : {
+        port : 8090,
+    },
     entry : {
         main : path.join(__dirname,'../src/vue-render/main.js')
     },
@@ -21,7 +25,8 @@ let vueConfig = {
             '@' : path.join(__dirname,'../src/vue-render'),
             'vue$' : 'vue/dist/vue.esm.js'
         },
-        extensions : ['.js','.vue','.json','.css','.node']
+        extensions : ['.js','.vue','.json','.css','.node'],
+        plugins: [new TsconfigPathsPlugin({ configFile: path.join(__dirname,"../tsconfig.json") })]
     },
 
     module : {
@@ -60,6 +65,11 @@ let vueConfig = {
                         }
                     }
                 }
+            },
+            {
+                test : /\.ts$/,
+                loader : 'ts-loader',
+                options : { appendTsSuffixTo: [/\.vue$/] }
             },
             {
                 test : /\.(png|jpe?g|gif|svg)$/,
@@ -103,7 +113,7 @@ let vueConfig = {
         // 提取css
         new MiniCssExtractPlugin({filename : 'style.css'}),
         // 编辑出错时，跳过输出阶段
-        new webpack.NoEmitOnErrorsPlugin(),
+        // new webpack.NoEmitOnErrorsPlugin(),
         // html处理
         new HtmlWebpackPlugin({
             filename : 'index.html',
@@ -126,7 +136,7 @@ console.log(`now environment of vue building is : ${process.env.NODE_ENV}`);
 if (process.env.NODE_ENV != 'production') {
     vueConfig.mode = 'development';
     vueConfig.devtool = '#cheap-module-eval-source-map';
-    vueConfig.plugins.push(new webpack.NamedModulesPlugin());
+    // vueConfig.plugins.push(new webpack.NamedModulesPlugin());
     vueConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
     vueConfig.target = 'electron-renderer';
     new webpack.DefinePlugin({

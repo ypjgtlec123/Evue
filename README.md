@@ -2,8 +2,8 @@
 集成electron与vue，可通过命令行简单的运行、打包桌面应用。
 
 ### 更新说明
-#### v1.1 添加typescript支持
-
+#### v1.0.1 添加typescript支持
+#### v1.0.2 完善package.json文件，添加element-ui支持，添加网络请求服务支持
 #### 基本架构
 * 1、Electron
 * 2、vue

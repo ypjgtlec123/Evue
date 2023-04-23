@@ -76,6 +76,7 @@ let vueConfig = {
                 use : {
                     loader : 'url-loader',
                     options : {
+                        esModule: false, // 设置为false后，图片显示不再为[Object Modules]
                         limit : 10000,
                         name : 'imgs/[name]--[folder].[ext]'
                     }
